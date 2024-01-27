@@ -1,6 +1,5 @@
-import React from "react";
 import { useState } from "react";
-import words1 from "./lv1.json";
+import words1 from "../../../src/components/words/lv1.json";
 import InputBar from "../../components/inputBar";
 import KeyboardText from "../../components/keyboard";
 import GuessWords from "../../components/words";

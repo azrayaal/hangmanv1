@@ -1,4 +1,4 @@
-import React from "react";
+import words1 from "./lv1.json";
 
 export interface WordsProps {
   wordToGuess: string;
