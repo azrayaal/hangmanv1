@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
+  // const [wordToguess, setRandomToGuess] = useState(()=>{
+  //   return words[Math]
+  // })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="flex flex-col items-center">
+        <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
+        <div className="text-xl mb-4">
+          {/* {renderWord()}
+        {renderMessage()} */}
+        </div>
+        <div className="flex flex-wrap">{/* {renderLetters()} */}</div>
+        <button className="mt-4 p-2 bg-green-500 text-white rounded">
+          {/* <button className="mt-4 p-2 bg-green-500 text-white rounded" onClick={selectRandomWord}> */}
+          New Game
+        </button>
+      </div>
     </div>
   );
 }
