@@ -1,44 +1,71 @@
-import React, { useState } from "react";
-import letters from "./letter.json";
-
-interface KeyboardProps {
+export interface KeyboardTextProps {
   onKeyPress: (value: string) => void;
+  guessedLetters: string[];
+  wordToGuess: string;
 }
 
-export default function KeyboardText() {
-  // export default function KeyboardText(props: KeyboardProps) {
-  // const { onKeyPress } = props;
-  const [lettersState] = useState<string[]>(letters);
-  console.log(lettersState);
+export default function KeyboardText(props: KeyboardTextProps) {
+  const { onKeyPress, guessedLetters, wordToGuess } = props;
+  const letters1 = "QWERTYUIOP".split("");
+  const letters2 = "ASDFGHJKL".split("");
+  const letters3 = "ZXCVBNM".split("");
 
-  const chunkedLetters: string[][] = [];
-  const chunkSize = [10, 9, Math.ceil(lettersState.length / 10) * 10 - 19];
+  const handleClick = (letter: string) => {
+    if (!guessedLetters.includes(letter)) {
+      onKeyPress(letter);
+    }
+  };
 
-  let startIndex = 0;
-  chunkSize.forEach((size) => {
-    chunkedLetters.push(lettersState.slice(startIndex, startIndex + size));
-    startIndex += size;
-  });
-
+  const isWrongLetter = (letter: string) => {
+    return !wordToGuess.includes(letter) && guessedLetters.includes(letter);
+  };
   return (
     <div>
-      {chunkedLetters.map((chunk, rowIndex) => (
-        <div
-          key={rowIndex}
-          className="flex flex-wrap justify-center gap-3 py-2"
-        >
-          {chunk.map((letter, index) => (
-            <button
-              key={index}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-              onClick={() => console.log(letter)}
-              // onClick={() => onKeyPress(letter)}
-            >
-              {letter}
-            </button>
-          ))}
-        </div>
-      ))}
+      <div>
+        {letters1.map((letter) => (
+          <button
+            key={letter}
+            className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+            }`}
+            disabled={guessedLetters.includes(letter)}
+            onClick={() => handleClick(letter)}
+          >
+            {letter}
+          </button>
+        ))}
+      </div>
+      <div>
+        {letters2.map((letter) => (
+          <button
+            key={letter}
+            className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+            }`}
+            disabled={guessedLetters.includes(letter)}
+            onClick={() => handleClick(letter)}
+          >
+            {letter}
+          </button>
+        ))}
+      </div>
+      <div>
+        {letters3.map((letter) => (
+          <button
+            key={letter}
+            className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
+              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+            }`}
+            disabled={guessedLetters.includes(letter)}
+            onClick={() => handleClick(letter)}
+          >
+            {letter}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
