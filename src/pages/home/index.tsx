@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import words1 from "../../../src/components/words/lv1.json";
 import GuessWords from "../../components/words";
 import KeyboardText from "../../components/keyboard";
+// import myImage from "./line1.png";
 
 export default function Home() {
   const [wordToGuess, setWordToGuess] = useState("");
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [result, setResult] = useState("");
   const [remainingAttempts, setRemainingAttempts] = useState(6);
+  const [lifeImg, setLifeImg] = useState("");
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * words1.length);
@@ -28,6 +30,8 @@ export default function Home() {
     window.location.reload();
   };
 
+  const img1 = "./line1.png";
+
   useEffect(() => {
     const wordArray = wordToGuess.split("");
     const displayWord = wordArray
@@ -35,6 +39,9 @@ export default function Home() {
       .join("");
     if (displayWord === wordToGuess) {
       setResult("You Win!");
+    } else if (remainingAttempts === 5) {
+      // setLifeImg(img1);
+      console.log(img1);
     } else if (remainingAttempts === 0) {
       setResult("Game Over!");
       setTimeout(restartGame, 3000);
