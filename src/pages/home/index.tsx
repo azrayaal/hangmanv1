@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import words1 from "../../../src/components/words/lv1.json";
 import GuessWords from "../../components/words";
 import KeyboardText from "../../components/keyboard";
-// import myImage from "./line1.png";
 
 export default function Home() {
   const [wordToGuess, setWordToGuess] = useState("");
@@ -30,7 +29,11 @@ export default function Home() {
     window.location.reload();
   };
 
-  const img1 = "./line1.png";
+  const imgLife5 = "./logo192.png";
+  const imgLife4 = "./line1.png";
+  const imgLife3 = "./line1.png";
+  const imgLife2 = "./line1.png";
+  const imgLife1 = "./line1.png";
 
   useEffect(() => {
     const wordArray = wordToGuess.split("");
@@ -40,8 +43,17 @@ export default function Home() {
     if (displayWord === wordToGuess) {
       setResult("You Win!");
     } else if (remainingAttempts === 5) {
-      // setLifeImg(img1);
-      console.log(img1);
+      setLifeImg(imgLife1);
+      // setLifeImg(imgLife2);
+    } else if (remainingAttempts === 4) {
+      setLifeImg("");
+      setLifeImg(imgLife2);
+    } else if (remainingAttempts === 3) {
+      // setLifeImg(imgLife3);
+    } else if (remainingAttempts === 2) {
+      // setLifeImg(imgLife4);
+    } else if (remainingAttempts === 1) {
+      // setLifeImg(imgLife4);
     } else if (remainingAttempts === 0) {
       setResult("Game Over!");
       setTimeout(restartGame, 3000);
@@ -62,6 +74,12 @@ export default function Home() {
         guessedLetters={guessedLetters}
         wordToGuess={wordToGuess}
       />
+      <img src={`${lifeImg}`} />
+      {/* <img
+        src="./421248785_914166843659250_5482120767074255287_n.jpg"
+        alt="Description of the image"
+      /> */}
+      <img src="" />
     </div>
   );
 }
