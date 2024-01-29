@@ -28,7 +28,6 @@ export default function Home() {
   const restartGame = () => {
     window.location.reload();
   };
-  const lifedefault = "./lifedefault.jpg";
   const imgLife6 = "./life6.jpg";
   const imgLife5 = "./life5.jpg";
   const imgLife4 = "./life4.jpg";
@@ -69,26 +68,31 @@ export default function Home() {
   }, [wordToGuess, guessedLetters, remainingAttempts]);
 
   return (
-    <div className="App">
-      <button onClick={restartGame}>Restart</button>
-      <div className="flex flex-col items-center">
-        <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
-        <GuessWords wordToGuess={wordToGuess} guessedLetters={guessedLetters} />
-        <div
-          className={`text-gray-800 ${
-            remainingAttempts === 0 ? "text-white" : ""
-          }`}
-        >
-          Attempts Remaining: {remainingAttempts}
+    <div className="App flex justify-center items-center">
+      <div className="content flex-1">
+        <button onClick={restartGame}>Restart</button>
+        <div className="flex flex-col items-center">
+          <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
+          <GuessWords
+            wordToGuess={wordToGuess}
+            guessedLetters={guessedLetters}
+          />
+          <div
+            className={`text-gray-800 ${
+              remainingAttempts === 0 ? "text-white" : ""
+            }`}
+          >
+            Attempts Remaining: {remainingAttempts}
+          </div>
+          <div>{result}</div>
         </div>
-        <div>{result}</div>
+        <KeyboardText
+          onKeyPress={handleKeyPress}
+          guessedLetters={guessedLetters}
+          wordToGuess={wordToGuess}
+        />
       </div>
-      <KeyboardText
-        onKeyPress={handleKeyPress}
-        guessedLetters={guessedLetters}
-        wordToGuess={wordToGuess}
-      />
-      <img src={`${lifeImg}`} />
+      <img src={`${lifeImg}`} className="center" />
     </div>
   );
 }
