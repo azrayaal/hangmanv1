@@ -114,7 +114,3 @@ export default function Home() {
     </>
   );
 }
-
-// -design Hangman
-// -OOP
-// -REDUX
