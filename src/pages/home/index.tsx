@@ -8,7 +8,7 @@ export default function Home() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [result, setResult] = useState("");
   const [remainingAttempts, setRemainingAttempts] = useState(6);
-  const [lifeImg, setLifeImg] = useState("./lifedefault.jpg");
+  const [lifeImg, setLifeImg] = useState("./life6-removebg-preview.png");
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * words1.length);
@@ -28,12 +28,12 @@ export default function Home() {
   const restartGame = () => {
     window.location.reload();
   };
-  const imgLife6 = "./life6.jpg";
-  const imgLife5 = "./life5.jpg";
-  const imgLife4 = "./life4.jpg";
-  const imgLife3 = "./life3.jpg";
-  const imgLife2 = "./life2.jpg";
-  const imgLife1 = "./life1.jpg";
+  const imgLife6 = "./life6-removebg-preview.png";
+  const imgLife5 = "./life5-removebg-preview.png";
+  const imgLife4 = "./life4-removebg-preview.png";
+  const imgLife3 = "./life3-removebg-preview.png";
+  const imgLife2 = "./life2-removebg-preview.png";
+  const imgLife1 = "./life1-removebg-preview.png";
 
   useEffect(() => {
     const wordArray = wordToGuess.split("");
@@ -69,6 +69,7 @@ export default function Home() {
 
   return (
     <div className="App flex justify-center items-center">
+      <img src={`${lifeImg}`} className="center" />
       <div className="content flex-1">
         <button onClick={restartGame}>Restart</button>
         <div className="flex flex-col items-center">
@@ -92,7 +93,10 @@ export default function Home() {
           wordToGuess={wordToGuess}
         />
       </div>
-      <img src={`${lifeImg}`} className="center" />
     </div>
   );
 }
+
+// -design Hangman
+// -OOP
+// -REDUX
