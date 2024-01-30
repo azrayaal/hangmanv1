@@ -8,7 +8,8 @@ export default function Home() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [result, setResult] = useState("");
   const [remainingAttempts, setRemainingAttempts] = useState(6);
-  const [lifeImg, setLifeImg] = useState("./life6-removebg-preview.png");
+  const [lifeImg, setLifeImg] = useState("./lifedefault.jpg");
+  const [lifeImgSm, setLifeImgSm] = useState("");
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * words1.length);
@@ -47,53 +48,70 @@ export default function Home() {
       setResult("You Win!");
     } else if (remainingAttempts === 5) {
       setLifeImg(imgLife1);
+      setLifeImgSm(imgLife1);
     } else if (remainingAttempts === 4) {
       setLifeImg("");
       setLifeImg(imgLife2);
+      setLifeImgSm(imgLife2);
     } else if (remainingAttempts === 3) {
       setLifeImg("");
       setLifeImg(imgLife3);
+      setLifeImgSm(imgLife3);
     } else if (remainingAttempts === 2) {
       setLifeImg("");
       setLifeImg(imgLife4);
+      setLifeImgSm(imgLife4);
     } else if (remainingAttempts === 1) {
       setLifeImg("");
       setLifeImg(imgLife5);
+      setLifeImgSm(imgLife5);
     } else if (remainingAttempts === 0) {
       setLifeImg("");
       setLifeImg(imgLife6);
+      setLifeImgSm(imgLife6);
       setResult("Game Over!");
       setTimeout(restartGame, 3000);
     }
   }, [wordToGuess, guessedLetters, remainingAttempts]);
 
   return (
-    <div className="App flex justify-center items-center">
-      <img src={`${lifeImg}`} className="center" />
-      <div className="content flex-1">
-        <button onClick={restartGame}>Restart</button>
-        <div className="flex flex-col items-center">
-          <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
-          <GuessWords
-            wordToGuess={wordToGuess}
-            guessedLetters={guessedLetters}
-          />
-          <div
-            className={`text-gray-800 ${
-              remainingAttempts === 0 ? "text-white" : ""
-            }`}
-          >
-            Attempts Remaining: {remainingAttempts}
-          </div>
-          <div>{result}</div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+        <div className="mx-auto hidden md:block">
+          <img src={`${lifeImg}`} className="center w-56 mt-10" />
         </div>
-        <KeyboardText
-          onKeyPress={handleKeyPress}
-          guessedLetters={guessedLetters}
-          wordToGuess={wordToGuess}
-        />
+        <div className="mt-10 App flex justify-center items-center mx-auto">
+          <div className="content flex-1 pt-3">
+            <button onClick={restartGame}>Restart</button>
+            <div className="flex flex-col items-center">
+              <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
+              <GuessWords
+                wordToGuess={wordToGuess}
+                guessedLetters={guessedLetters}
+              />
+              <div
+                className={`text-gray-800 ${
+                  remainingAttempts === 0 ? "text-red-500" : ""
+                }`}
+              >
+                Attempts Remaining: {remainingAttempts}
+              </div>
+              <div>{result}</div>
+            </div>
+            <KeyboardText
+              onKeyPress={handleKeyPress}
+              guessedLetters={guessedLetters}
+              wordToGuess={wordToGuess}
+            />
+          </div>
+        </div>
+        <div className="mx-auto md:hidden block">
+          <img src={`${lifeImgSm}`} className="center w-56" />
+        </div>
       </div>
-    </div>
+
+      {/*  */}
+    </>
   );
 }
 

@@ -27,7 +27,7 @@ export default function KeyboardText(props: KeyboardTextProps) {
             key={letter}
             className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
               // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
-              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+              isWrongLetter(letter) ? "text-red-500 pointer-events-none" : ""
             }`}
             disabled={guessedLetters.includes(letter)}
             onClick={() => handleClick(letter)}
@@ -42,7 +42,7 @@ export default function KeyboardText(props: KeyboardTextProps) {
             key={letter}
             className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
               // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
-              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+              isWrongLetter(letter) ? "text-red-500 pointer-events-none" : ""
             }`}
             disabled={guessedLetters.includes(letter)}
             onClick={() => handleClick(letter)}
@@ -57,7 +57,7 @@ export default function KeyboardText(props: KeyboardTextProps) {
             key={letter}
             className={`text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
               // className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 mx-1 rounded text-sm ${
-              isWrongLetter(letter) ? "text-white pointer-events-none" : ""
+              isWrongLetter(letter) ? "text-red-500 pointer-events-none" : ""
             }`}
             disabled={guessedLetters.includes(letter)}
             onClick={() => handleClick(letter)}
