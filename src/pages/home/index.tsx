@@ -42,9 +42,7 @@ export default function Home() {
       .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
       .join("");
 
-    console.log("wordArray", wordArray);
-    console.log("displayWord", displayWord);
-    if (displayWord === wordToGuess) {
+    if (displayWord === wordToGuess && guessedLetters.length > 0) {
       setResult("You Win!");
     } else if (remainingAttempts === 5) {
       setLifeImg(imgLife1);
@@ -82,9 +80,14 @@ export default function Home() {
         </div>
         <div className="mt-10 App flex justify-center items-center mx-auto">
           <div className="content flex-1 pt-3">
-            <button onClick={restartGame}>Restart</button>
+            <button
+              className="md:hidden block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              onClick={restartGame}
+            >
+              Restart
+            </button>
             <div className="flex flex-col items-center">
-              <h1 className="text-3xl font-bold my-4">Hangman Game</h1>
+              <h1 className="text-3xl font-bold my-4">Hangman</h1>
               <GuessWords
                 wordToGuess={wordToGuess}
                 guessedLetters={guessedLetters}
@@ -96,7 +99,13 @@ export default function Home() {
               >
                 Attempts Remaining: {remainingAttempts}
               </div>
-              <div>{result}</div>
+              <div
+                className={`text-2xl font-bold py-5 ${
+                  result === "You Win!" ? "text-white" : "text-red-500"
+                }`}
+              >
+                {result}
+              </div>
             </div>
             <KeyboardText
               onKeyPress={handleKeyPress}
@@ -107,6 +116,16 @@ export default function Home() {
         </div>
         <div className="mx-auto md:hidden block">
           <img src={`${lifeImgSm}`} className="center w-56" />
+        </div>
+        <div className="hidden md:flex md:justify-end pt-5 pr-5">
+          <div className="">
+            <button
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              onClick={restartGame}
+            >
+              Restart
+            </button>
+          </div>
         </div>
       </div>
 
